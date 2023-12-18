@@ -1,2 +1,2 @@
-# IPTV-Middleware
-Realtime project we  are creating in Sazpin 
+# IPTV_Middleware
+Middleware Application Created By Using MERN Stack

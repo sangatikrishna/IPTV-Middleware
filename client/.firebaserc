@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "sazpin-iptv",
+    "build": "sazpin-iptv"
+  },
+  "targets": {},
+  "etags": {}
+}

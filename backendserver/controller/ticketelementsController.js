@@ -1,0 +1,118 @@
+import ticket_elements from "../models/ticket_elements.js";
+// import dateNow from "date-now";
+// // import date from "date-and-time";
+// import fs from "fs";
+
+//GET
+const ticketelementsdata = async (req, res) => {
+  try {
+    const data = await ticket_elements.find();
+
+    res.status(200).json({
+      // status:"success",
+      // length:videodata.length,
+
+      data,
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+};
+export default ticketelementsdata;
+
+//GET by _id
+const ticketelementsbyObId = async (req, res) => {
+  try {
+    const data = await ticket_elements.findById(req.params._id);
+    return res.json(data);
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+export { ticketelementsbyObId };
+
+//POST API
+const addticketelements = async (req, res) => {
+  const { id, title, status, image, position, created, updated } = req.body;
+  try {
+    const newData = new ticket_elements({
+      id,
+      title,
+      status,
+      image,
+      position,
+      created,
+      updated,
+    });
+    await newData.save();
+    const videodata = await ticket_elements.find();
+    return res.json(await ticket_elements.find());
+
+    // res.status(201).json({
+
+    //       status:"success",
+    //       length:newData.length,
+    //       data:{
+    //         newData
+    //         }
+    //       });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+export { addticketelements };
+
+//DELETE API
+const deleteticketelements = async (req, res) => {
+  try {
+    const deletedticketelements = await ticket_elements.findByIdAndDelete(
+      req.params._id
+    );
+    if (!deletedticketelements) res.status(404).send("No item found");
+
+    // return
+    const ticketelementsdata = await ticket_elements.find();
+
+    res.status(200).json({
+      status: "success",
+      length: ticketelementsdata.length,
+      data: {
+        ticketelementsdata,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+export { deleteticketelements };
+
+//PATCH API
+const ticketelementsPatch = async (req, res) => {
+  try {
+    const patchId = req.params._id;
+
+    const updated = await ticket_elements.findOneAndUpdate(
+      { _id: patchId },
+      req.body,
+      { new: true }
+    );
+
+    console.log(updated);
+    res.json({ updated });
+  } catch (err) {
+    res.status(500).send(err.message);
+    console.log(err.message);
+  }
+};
+
+export { ticketelementsPatch };

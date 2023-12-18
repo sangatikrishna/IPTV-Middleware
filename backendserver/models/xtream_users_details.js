@@ -1,0 +1,95 @@
+import mongoose from "mongoose";
+const xtreamusersdetailsSchema=new mongoose.Schema({
+id:
+{
+    type:String
+},
+
+mac_address:
+{
+    type:String
+},
+expiry_date:
+{
+    type:String
+},
+streamlist_url:
+{
+    type:String
+},
+streamlist_url2:
+{
+    type:String
+},
+streamlist_url3:
+{
+    type:String
+},
+streamlist_url4:
+{
+    type:String
+},
+streamlist_url5:
+{
+    type:String
+},
+activation_code:
+{
+    type:String
+},
+enddate:
+{
+    type:String
+},
+device_id:
+{
+    type:String
+},
+is_activated:
+{
+    type:String
+},
+username:
+{
+    type:String
+},
+password:
+{
+    type:String
+},
+firstname:
+{
+    type:String
+},
+lastname:
+{
+    type:String
+},
+gender:
+{
+    type:String
+},
+created_by:
+{
+    type:String
+},
+group_id:
+{
+    type:String
+},
+status:
+{
+    type:String
+},
+created:
+{
+    type:String
+},
+updated:
+{
+    type:String
+},
+
+})
+const xtream_users_details=new mongoose.model("xtream_users_details",xtreamusersdetailsSchema);
+export default xtream_users_details;
